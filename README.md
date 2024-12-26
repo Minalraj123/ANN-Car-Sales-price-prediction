@@ -2,68 +2,80 @@
 
 ![image](https://github.com/user-attachments/assets/b73181ed-a05a-4735-94a9-e290dc1c1e85)
 
-This project utilizes Artificial Neural Networks (ANNs) to predict car sales prices based on customer demographics and financial data, combined with vehicle purchase information. The predictive model is designed to assist dealerships, marketers, and buyers in evaluating car values, thereby optimizing sales strategies and decision-making processes.
+Script Analysis
+# 1. Data Loading and Initial Inspection
+**Dataset Reading:**
+Reads the CSV file using pd.read_csv.
+Encodes the file with ISO-8859-1 (useful for special characters).
+**Dataset Inspection:**
+Displays the first few rows (data.head()).
+Provides metadata (data.info()) and descriptive statistics (data.describe()).
 
-**Expanded Details**
-# Dataset Features
-**Customer Information:**
-**Gender (Categorical)**
-**Age (Numerical)**
-**Annual Salary (Numerical)**
-**Credit Card Debt (Numerical)**
-**Net Worth (Numerical)**
-# Target Variable:
-**Car Purchase Amount:** Price paid for the car (Numerical, regression target).
-Preprocessing Techniques
-# Dropping Unnecessary Columns:
-Columns like Customer Name and Customer Email were removed as they do not contribute to predictive modeling.
+# 2. Data Preprocessing
+Dropping Unnecessary Columns:
 
-# Handling Categorical Variables:
+Columns like customer name, customer e-mail, and country are checked for existence before being dropped.
+**Feature and Target Selection:**
 
-The Country column was one-hot encoded to convert it into a machine-readable format.
-# Feature Scaling:
+Features (x) are selected as columns 0 to 3 (gender, age, annual salary, credit card debt).
+The target variable (y) is the car purchase amount (column 5).
+**Scaling:**
 
-Min-Max Scaling was used to normalize numerical features to a range of [0, 1], ensuring all input features contribute equally to the model's performance.
-Model Architecture
-# Artificial Neural Network Structure:
+Both x and y are scaled using StandardScaler for normalization.
+ # 3. Splitting the Dataset
+Training and Testing Split:
+Data is split into training and testing sets using an 80:20 ratio with a fixed random state for reproducibility.
+# 4. Building the ANN
+Architecture:
 
-**Input Layer:** 128 neurons with ReLU activation to handle the high-dimensional input space.
-**Hidden Layers:** One hidden layer with 64 neurons, also using ReLU activation, to capture non-linear relationships.
-**Output Layer:** 1 neuron with linear activation for regression predictions.
-Model Training Details
-**Optimizer:** The Adam optimizer was selected for its adaptive learning rate capabilities.
-**Loss Function:** Mean Squared Error (MSE) to penalize larger errors during training.
-**Metric:** Mean Absolute Error (MAE) for interpretability and measuring average prediction error.
-**Training Parameters:**
-**Epochs:** 50
-**Batch Size:** 32
-**Validation Split:** 20%
-Training showed consistent convergence, with validation performance closely tracking the training curve, demonstrating no signs of overfitting.
+Two hidden layers with 10 neurons each, using ReLU activation.
+Output layer has 1 neuron with linear activation (suitable for regression).
+**Early Stopping:**
 
-# Model Evaluation
-**Metrics on Test Data:**
+Configured to monitor validation loss and stop training early if no improvement is seen for 2 consecutive epochs.
+# 5. Training the ANN
+Optimizer: Adam optimizer with a learning rate of 0.01.
+Loss Function: Mean Squared Error (MSE).
+Metrics: Mean Absolute Error (MAE).
+Training Parameters: Batch size of 50 and 70 epochs.
+# 6. Evaluation
+**Visualizations:**
 
-**Mean Absolute Error (MAE):** [Provide exact value].
-**Mean Squared Error (MSE):** [Provide exact value].
-# Learning Curve Analysis:
-Both training and validation losses steadily decreased over the 50 epochs, confirming the model's robustness.
+Plots training and validation MAE over epochs.
+Plots training and validation loss over epochs.
+**Prediction:**
 
-# Key Results
-The ANN model demonstrated high accuracy in predicting car sales prices.
-Achieved a low MAE, indicating precise price predictions.
-Validated the ANN's effectiveness in handling diverse numerical and categorical data.
-Future Enhancements
-# Feature Engineering:
-Include additional features, such as car make, model year, mileage, and fuel type, to improve predictions further.
+Makes predictions on the test set (y_pred).
+**Performance Metric:**
 
+Computes the R² score using r2_score, which measures the proportion of variance explained by the model.
+Output Explanation
+score: The R² score is a critical metric here. Multiplying it by 100 gives the percentage of variance in the target variable explained by the model.
+For example, if score = 0.85, then score * 100 = 85%, meaning the model explains 85% of the variance in car purchase amounts.
+Improvements & Suggestions
+**Data Preprocessing:**
+
+Verify data types (e.g., categorical variables like Gender) and handle them properly.
+Include a check for missing or outlier values.
+**Model Architecture:**
+
+Increase the number of neurons or layers if the model is underfitting.
+Add dropout layers to prevent overfitting (currently commented out).
 **Hyperparameter Tuning:**
-Optimize hyperparameters like the number of neurons, layers, and batch size to enhance model performance.
 
-**Advanced Architectures:**
-Experiment with deeper networks or other machine learning models (e.g., Random Forest, Gradient Boosting) for comparison.
+Experiment with learning rates, batch sizes, and activation functions.
+Perform grid search or random search for optimal hyperparameters.
+**Evaluation Metrics:**
 
-**Explainability:**
-Use SHAP or LIME to interpret the model and identify the most impactful features driving price predictions.
+Include additional metrics like Mean Absolute Percentage Error (MAPE) or Root Mean Squared Error (RMSE) for more interpretability.
+Plot predicted vs. actual values for better visualization of model performance.
+**Feature Engineering:**
 
-**Deployment:**
-Deploy the model as a web or mobile application using Flask, FastAPI, or Streamlit for real-time car price predictions.
+Derive new features such as Debt-to-Income Ratio or interaction terms between features.
+Consider using PCA or feature selection if the dataset grows.
+**Interpretability:**
+
+Use libraries like SHAP to understand feature importance and the model's decision-making process.
+**Model Deployment:**
+
+Save the trained model using model.save() and deploy it in a web interface for user predictions.
