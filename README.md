@@ -32,23 +32,24 @@ Two hidden layers with 10 neurons each, using ReLU activation.
 Output layer has 1 neuron with linear activation (suitable for regression).
 
 **Early Stopping:**
-
 Configured to monitor validation loss and stop training early if no improvement is seen for 2 consecutive epochs.
-# 5. Training the ANN
-Optimizer: Adam optimizer with a learning rate of 0.01.
-Loss Function: Mean Squared Error (MSE).
-Metrics: Mean Absolute Error (MAE).
-Training Parameters: Batch size of 50 and 70 epochs.
-# 6. Evaluation
-**Visualizations:**
 
+# 5. Training the ANN
+**Optimizer:** Adam optimizer with a learning rate of 0.01.
+**Loss Function:** Mean Squared Error (MSE).
+**Metrics:** Mean Absolute Error (MAE).
+**Training Parameters:** Batch size of 50 and 70 epochs.
+
+# 6. Evaluation
+
+**Visualizations:**
 Plots training and validation MAE over epochs.
 Plots training and validation loss over epochs.
+
 **Prediction:**
-
 Makes predictions on the test set (y_pred).
-**Performance Metric:**
 
+**Performance Metric:**
 Computes the R² score using r2_score, which measures the proportion of variance explained by the model.
 Output Explanation
 
