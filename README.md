@@ -12,24 +12,25 @@ Displays the first few rows (data.head()).
 Provides metadata (data.info()) and descriptive statistics (data.describe()).
 
 # 2. Data Preprocessing
-Dropping Unnecessary Columns:
-
+**Dropping Unnecessary Columns:**
 Columns like customer name, customer e-mail, and country are checked for existence before being dropped.
-**Feature and Target Selection:**
 
+**Feature and Target Selection:**
 Features (x) are selected as columns 0 to 3 (gender, age, annual salary, credit card debt).
 The target variable (y) is the car purchase amount (column 5).
-**Scaling:**
 
+**Scaling:**
 Both x and y are scaled using StandardScaler for normalization.
+
  # 3. Splitting the Dataset
 Training and Testing Split:
-Data is split into training and testing sets using an 80:20 ratio with a fixed random state for reproducibility.
+Data is split into training and testing sets using an 80:20 ratio with a fixed random state for reproducibility
+.
 # 4. Building the ANN
-Architecture:
-
+**Architecture:**
 Two hidden layers with 10 neurons each, using ReLU activation.
 Output layer has 1 neuron with linear activation (suitable for regression).
+
 **Early Stopping:**
 
 Configured to monitor validation loss and stop training early if no improvement is seen for 2 consecutive epochs.
