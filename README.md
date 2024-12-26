@@ -2,11 +2,11 @@
 
 ![image](https://github.com/user-attachments/assets/b73181ed-a05a-4735-94a9-e290dc1c1e85)
 
-Script Analysis
 # 1. Data Loading and Initial Inspection
 **Dataset Reading:**
 Reads the CSV file using pd.read_csv.
 Encodes the file with ISO-8859-1 (useful for special characters).
+
 **Dataset Inspection:**
 Displays the first few rows (data.head()).
 Provides metadata (data.info()) and descriptive statistics (data.describe()).
@@ -51,32 +51,33 @@ Makes predictions on the test set (y_pred).
 
 Computes the R² score using r2_score, which measures the proportion of variance explained by the model.
 Output Explanation
-score: The R² score is a critical metric here. Multiplying it by 100 gives the percentage of variance in the target variable explained by the model.
-For example, if score = 0.85, then score * 100 = 85%, meaning the model explains 85% of the variance in car purchase amounts.
-Improvements & Suggestions
-**Data Preprocessing:**
 
+**score:** The R² score is a critical metric here. Multiplying it by 100 gives the percentage of variance in the target variable explained by the model.
+For example, if score = 0.85, then score * 100 = 85%, meaning the model explains 85% of the variance in car purchase amounts.
+
+**Improvements & Suggestions**
+**Data Preprocessing:**
 Verify data types (e.g., categorical variables like Gender) and handle them properly.
 Include a check for missing or outlier values.
-**Model Architecture:**
 
+**Model Architecture:**
 Increase the number of neurons or layers if the model is underfitting.
 Add dropout layers to prevent overfitting (currently commented out).
-**Hyperparameter Tuning:**
 
+**Hyperparameter Tuning:**
 Experiment with learning rates, batch sizes, and activation functions.
 Perform grid search or random search for optimal hyperparameters.
-**Evaluation Metrics:**
 
+**Evaluation Metrics:**
 Include additional metrics like Mean Absolute Percentage Error (MAPE) or Root Mean Squared Error (RMSE) for more interpretability.
 Plot predicted vs. actual values for better visualization of model performance.
-**Feature Engineering:**
 
+**Feature Engineering:**
 Derive new features such as Debt-to-Income Ratio or interaction terms between features.
 Consider using PCA or feature selection if the dataset grows.
+
 **Interpretability:**
-
 Use libraries like SHAP to understand feature importance and the model's decision-making process.
-**Model Deployment:**
 
+**Model Deployment:**
 Save the trained model using model.save() and deploy it in a web interface for user predictions.
